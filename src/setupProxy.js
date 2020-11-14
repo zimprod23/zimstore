@@ -4,8 +4,7 @@ module.exports = function (app) {
   app.use(
     "/api",
     createProxyMiddleware({
-      target:
-        "https://5fb02a111db4d78ab7563b72--admiring-villani-192526.netlify.app/",
+      target: "https://git.heroku.com/zimstore.git",
       changeOrigin: true,
     })
   );
