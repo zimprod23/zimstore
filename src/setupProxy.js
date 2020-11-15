@@ -4,7 +4,7 @@ module.exports = function (app) {
   app.use(
     "/api",
     createProxyMiddleware({
-      target: "https://zimstore.herokuapp.com",
+      target: "https://zimstore.herokuapp.com/",
       changeOrigin: true,
     })
   );
