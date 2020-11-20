@@ -23,7 +23,7 @@ export default function Deposits() {
     <React.Fragment>
       <Title>Recent Deposits</Title>
       <Typography component="p" variant="h4">
-        {/* $3,024.00 */}${sum}.00
+        {/* $3,024.00 */}${sum},00
       </Typography>
       <Typography color="textSecondary" className={classes.depositContext}>
         {/* on 15 March, 2019 */}This week
@@ -37,7 +37,7 @@ export default function Deposits() {
       <br />
       <Title>netto</Title>
       <Typography component="p" variant="h4">
-        {/* $3,024.00 */}${sum}.00
+        {/* $3,024.00 */}${sum},00
       </Typography>
     </React.Fragment>
   );

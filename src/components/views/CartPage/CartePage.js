@@ -10,7 +10,7 @@ import UserCartBlock from "./UserCarteBlock";
 import Empty from "./Empty.PNG";
 import "./success.PNG";
 //import StripeCheckout from "../../utils/StripeCheckoutGateway";
-import { Button } from "@material-ui/core";
+import { Button, Grid } from "@material-ui/core";
 import { TgState } from "./ToogleState";
 import OpenDialog from "./Checkout/OpenDialog";
 import { addToCart } from "../../../actions/authAction";
@@ -40,6 +40,7 @@ function CartePage(props) {
   const [Total, setTotal] = useState(0);
   const [ShowSuccess, setShowSuccess] = useState(false);
   const [ShowTotal, setShowTotal] = useState(false);
+  const [method, setmethod] = useState("PAYPAL");
   const RedirectToCheckout = () => {
     window.location.replace(`/checkout?papa=mama`);
   };
@@ -64,9 +65,15 @@ function CartePage(props) {
   }, [props.user, auth.user && auth.user.user]);
   const { toogle } = useContext(TgState);
   const [Toogle, setToogle] = toogle;
-  const handleOpenDialog = () => {
+  const handleOpenDialog1 = () => {
     setToogle(true);
+    setmethod("PAYPAL");
   };
+  const handleOpenDialog2 = () => {
+    setToogle(true);
+    setmethod("COD");
+  };
+
   useEffect(() => {
     const wholsome = () => {
       setTotal(0);
@@ -100,29 +107,6 @@ function CartePage(props) {
     setShowTotal(true);
   };
 
-  // const transactionSuccess = (data) => {
-  //   dispatch(
-  //     onSuccesBy({
-  //       cartDetail: CardData,
-  //       paymentData: data,
-  //     })
-  //   )
-  //     .then((response) => {
-  //       setShowSuccess(true);
-  //       setShowTotal(false);
-  //     })
-  //     .catch((err) => {
-  //       alert(err);
-  //     });
-  // };
-
-  // const transactionError = () => {
-  //   console.log("Paypal error");
-  // };
-
-  // const transactionCanceled = () => {
-  //   console.log("Transaction canceled");
-  // };
   const incrementQ = (id) => {
     dispatch(addToCart(id))
       .then((res) => console.log("We havin good time outta here"))
@@ -151,16 +135,33 @@ function CartePage(props) {
         <Mty />
       )}
       {ShowTotal && (
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handleOpenDialog}
-          style={{ padding: "10px" }}
-        >
-          Continue payment (PayPal)
-        </Button>
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleOpenDialog1}
+              style={{ padding: "10px" }}
+            >
+              payment (PayPal)
+            </Button>
+          </Grid>
+
+          <Grid item xs={12}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleOpenDialog2}
+              style={{ padding: "10px" }}
+            >
+              Cash on delevery
+            </Button>
+          </Grid>
+        </Grid>
       )}
-      {ShowTotal && <OpenDialog toPay={Total} products={CardDetailsEo} />}
+      {ShowTotal && (
+        <OpenDialog toPay={Total} products={CardDetailsEo} method={method} />
+      )}
     </div>
   );
 }

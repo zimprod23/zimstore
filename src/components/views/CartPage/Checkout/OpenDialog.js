@@ -7,6 +7,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 // import DialogTitle from "@material-ui/core/DialogTitle";
 import { TgState } from "../ToogleState";
 import Chekout from "./Checkout";
+import CODCheckout from "./CODChecout";
 
 export default function ScrollDialog(props) {
   const { toogle } = useContext(TgState);
@@ -49,7 +50,11 @@ export default function ScrollDialog(props) {
             ref={descriptionElementRef}
             tabIndex={-1}
           >
-            <Chekout toPay={props.toPay} products={props.products} />
+            {props.method === "PAYPAL" ? (
+              <Chekout toPay={props.toPay} products={props.products} />
+            ) : (
+              <CODCheckout toPay={props.toPay} products={props.products} />
+            )}
           </DialogContentText>
         </DialogContent>
         <DialogActions>

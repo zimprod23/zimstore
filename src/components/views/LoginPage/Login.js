@@ -216,7 +216,7 @@ export default function SignInSide(props) {
                   })
                   .catch((err) => {
                     setFormErrorMessage(
-                      "Check out your Account from catch block or Password again"
+                      "Check out your Account  or Password again"
                     );
                     setTimeout(() => {
                       setFormErrorMessage("");

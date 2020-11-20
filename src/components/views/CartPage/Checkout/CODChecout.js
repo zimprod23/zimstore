@@ -10,11 +10,26 @@ import Typography from "@material-ui/core/Typography";
 import AddressForm from "./AddressForm";
 import Review from "./Review";
 import { TgState } from "../ToogleState";
-import Paypal from "../../../utils/Paypal";
 import { useDispatch, useSelector } from "react-redux";
 import { onSuccesBy } from "../../../../actions/authAction";
 import { v4 as uuidv4 } from "uuid";
 import RenderAlert from "../../../utils/RenderAlert";
+import CODAdress from "./CODAdress";
+
+function FinishPayment(props) {
+  return (
+    <div>
+      <br />
+      <Button
+        onClick={() => props.finishOrder()}
+        color="primary"
+        variant="contained"
+      >
+        Finish
+      </Button>
+    </div>
+  );
+}
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -56,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
 const steps = ["Shipping address", "Payment details"];
 //const steps = ["Shipping address", "Payment details", "Review your order"];
 
-export default function Checkout(props) {
+export default function CODChecout(props) {
   const orderId = uuidv4();
   const { buyer, alerttoogle } = useContext(TgState);
   const [BuyerData, setBuyerData] = buyer;
@@ -68,7 +83,7 @@ export default function Checkout(props) {
   function getStepContent(step) {
     switch (step) {
       case 0:
-        return <AddressForm />;
+        return <CODAdress />;
       // case 1:
       //   return <PaymentForm />;
       case 1:
@@ -86,13 +101,13 @@ export default function Checkout(props) {
   //Payment tools
   const dispatch = useDispatch();
   const CardData = useSelector((state) => state.auth.cartDetail);
-  const transactionSuccess = (data) => {
+  const transactionSuccess = () => {
     dispatch(
       onSuccesBy({
         cartDetail: CardData,
-        method: "PAYPAL",
+        method: "COD",
         paymentData: {
-          data: data,
+          data: null,
           Coordinates: { orderId, BuyerData, total: props.toPay },
         },
       })
@@ -111,14 +126,6 @@ export default function Checkout(props) {
       });
   };
 
-  const transactionError = () => {
-    console.log("Paypal error");
-  };
-
-  const transactionCanceled = () => {
-    console.log("Transaction canceled");
-  };
-
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
 
@@ -128,7 +135,7 @@ export default function Checkout(props) {
       !BuyerData.lastName ||
       !BuyerData.adress1 ||
       !BuyerData.city ||
-      !BuyerData.country
+      !BuyerData.adress2
     ) {
       alert("please fill the missing inputs");
     } else {
@@ -189,12 +196,7 @@ export default function Checkout(props) {
                   </Button> */}
                   {activeStep === steps.length - 1 ? (
                     props.toPay ? (
-                      <Paypal
-                        toPay={props.toPay}
-                        onSuccess={transactionSuccess}
-                        transactionError={transactionError}
-                        transactionCanceled={transactionCanceled}
-                      />
+                      <FinishPayment finishOrder={transactionSuccess} />
                     ) : (
                       <p>Waiting payment server...</p>
                     )

@@ -34,6 +34,9 @@ function ForgotPasswordFS(props) {
         Axios.post("/api/user/ChangePassword", data)
           .then((res) => {
             setSuccess(true);
+            setTimeout(() => {
+              window.location.replace("/signin");
+            }, 3000);
           })
           .catch((err) => {
             setError("Could not Change your password, Try Later");
