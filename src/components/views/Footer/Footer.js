@@ -80,7 +80,7 @@ function Footer(props) {
               color="textSecondary"
               component="p"
             >
-              <a color="inherit" href="/">
+              <a color="inherit" href="https://www.facebook.com/ZimStore1/">
                 Facebook
               </a>
             </Typography>
@@ -90,7 +90,7 @@ function Footer(props) {
               color="textSecondary"
               component="p"
             >
-              <a color="inherit" href="/">
+              <a color="inherit" href="https://www.instagram.com/zim_store1/">
                 Instagram
               </a>
             </Typography>
@@ -100,7 +100,7 @@ function Footer(props) {
               color="textSecondary"
               component="p"
             >
-              <a color="inherit" href="/">
+              <a color="inherit" href="https://twitter.com/zim_store">
                 Twitter
               </a>
             </Typography>
@@ -120,7 +120,7 @@ function Footer(props) {
               color="textSecondary"
               component="p"
             >
-              HamzaLouhab@gmail.com
+              mkrugerlucas@gmail.com
             </Typography>
             <Typography
               variant="subtitle1"
@@ -128,7 +128,7 @@ function Footer(props) {
               color="textSecondary"
               component="p"
             >
-              ezzoubeirelasraoui@gmail.com
+              zimstore2023@gmail.com
             </Typography>
             <Typography
               variant="subtitle1"
@@ -136,7 +136,7 @@ function Footer(props) {
               color="textSecondary"
               component="p"
             >
-              06xxxxxxxxxx
+              (Whatsapp)+12038726327
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6} md={4} lg={3}>

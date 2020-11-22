@@ -147,7 +147,7 @@ function CartePage(props) {
             </Button>
           </Grid>
 
-          <Grid item xs={12}>
+          {/* <Grid item xs={12}>
             <Button
               variant="contained"
               color="primary"
@@ -156,7 +156,7 @@ function CartePage(props) {
             >
               Cash on delevery
             </Button>
-          </Grid>
+          </Grid> */}
         </Grid>
       )}
       {ShowTotal && (

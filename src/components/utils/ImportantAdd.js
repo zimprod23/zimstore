@@ -12,6 +12,7 @@ import {
   PhoneAndroid,
   Watch,
   Stars,
+  Apps,
   Devices,
   Apple,
   Kitchen,
@@ -169,11 +170,11 @@ export default function NestedList() {
           selected={selectedIndex === 5}
           onClick={(event) => {
             handleListItemClick(event, 5);
-            setcat("Watches");
+            setcat("Digital Products");
           }}
         >
           <ListItemIcon>
-            <Watch />
+            <Apps />
           </ListItemIcon>
           <ListItemText primary="Watches" />
         </ListItem>
