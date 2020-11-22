@@ -176,7 +176,7 @@ export default function NestedList() {
           <ListItemIcon>
             <Apps />
           </ListItemIcon>
-          <ListItemText primary="Watches" />
+          <ListItemText primary="Digital Products" />
         </ListItem>
         <ListItem
           button

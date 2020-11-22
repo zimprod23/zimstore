@@ -80,7 +80,11 @@ function Footer(props) {
               color="textSecondary"
               component="p"
             >
-              <a color="inherit" href="https://www.facebook.com/ZimStore1/">
+              <a
+                color="inherit"
+                href="https://www.facebook.com/ZimStore1/"
+                target="_blank"
+              >
                 Facebook
               </a>
             </Typography>
@@ -90,7 +94,11 @@ function Footer(props) {
               color="textSecondary"
               component="p"
             >
-              <a color="inherit" href="https://www.instagram.com/zim_store1/">
+              <a
+                color="inherit"
+                href="https://www.instagram.com/zim_store1/"
+                target="_blank"
+              >
                 Instagram
               </a>
             </Typography>
@@ -100,7 +108,11 @@ function Footer(props) {
               color="textSecondary"
               component="p"
             >
-              <a color="inherit" href="https://twitter.com/zim_store">
+              <a
+                color="inherit"
+                href="https://twitter.com/zim_store"
+                target="_blank"
+              >
                 Twitter
               </a>
             </Typography>
