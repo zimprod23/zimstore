@@ -56,10 +56,15 @@ export default function UploadProduct() {
   const [strictPrice, setstrictPrice] = useState("");
   const [stock, setstock] = useState("");
   const [brand, setbrand] = useState("");
+  const [link, setlink] = useState("");
   const [productKeyWords, setproductKeyWords] = useState([]);
   const handleDescriptionChange = (event) => {
     const desc = event.target.value;
     setdescription(desc);
+  };
+  const handlelinkChange = (event) => {
+    const desc = event.target.value;
+    setlink(desc);
   };
   const handleStockChange = (e) => {
     setstock(e.target.value);
@@ -107,6 +112,7 @@ export default function UploadProduct() {
     strictPrice: strictPrice,
     reduction: reduction,
     brand: brand,
+    link: link,
     keywords: productKeyWords.map((item, index) => {
       return item.key;
     }),
@@ -131,6 +137,18 @@ export default function UploadProduct() {
         <Grid item xs={6}>
           <div className={classes.paper}>
             <form className={classes.form} onSubmit={handleSubmit}>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                value={link}
+                onChange={handlelinkChange}
+                fullWidth
+                id="link"
+                label="Product link"
+                name="product_link"
+                autoFocus
+              />
               <TextField
                 variant="outlined"
                 margin="normal"

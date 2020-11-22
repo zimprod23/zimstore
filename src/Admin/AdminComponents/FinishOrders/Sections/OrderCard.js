@@ -25,11 +25,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ProductCards(props) {
+  let alternative = `/product/${props.product.id}`;
   const classes = useStyles();
   return (
     <div>
       <Card className={classes.root}>
-        <a href={`/product/${props.product.id}`}>
+        <a
+          href={`${props.product.link ? props.product.link : alternative}`}
+          target="_blank"
+        >
           <CardActionArea>
             <CardMedia
               className={classes.media}
