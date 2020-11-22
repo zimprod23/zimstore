@@ -18,6 +18,7 @@ import Footer from "./components/views/Footer/Footer";
 import UserDashBoard from "./user/userComponent/Dashboard/DashBorad";
 import EmailVer from "./components/views/RegisterPage/InformVerification";
 import ForgotPass from "./components/views/LoginPage/ForgotPasswordFS";
+import Page404 from "./components/utils/Page404";
 
 function App() {
   let fullPath = window.location.href;
@@ -80,6 +81,7 @@ function App() {
               path="/admin_private_dashBoard123"
               component={Auth(AdminPage, true, true)}
             />
+            <Route exact path="" component={Auth(Page404, false, false)} />
           </AdminOpsProvider>
         </Switch>
         {targetPath == "/admin" ? null : usrDashboard == "/dashboard" ? null : (
