@@ -3,19 +3,15 @@ import { makeStyles, Grid } from "@material-ui/core";
 import {
   Divider,
   Typography,
-  Button,
   IconButton,
   Chip,
+  Select,
+  FormControl,
+  InputLabel,
 } from "@material-ui/core";
 import Rating from "@material-ui/lab/Rating";
 import Vote from "./Vote";
-import {
-  RemoveRedEye,
-  RateReview,
-  Favorite,
-  Feedback,
-  Warning,
-} from "@material-ui/icons";
+import { RemoveRedEye, Favorite, Feedback } from "@material-ui/icons";
 import { hitLoveProduct } from "../../../../actions/productsAction";
 import { useDispatch, useSelector } from "react-redux";
 import { TgState } from "../../CartPage/ToogleState";
@@ -37,10 +33,11 @@ const useStyles = makeStyles((theme) => ({
 function ProductInfo(props) {
   const dispatch = useDispatch();
   const [isSaved, setisSaved] = useState(null);
-  const [voteOpen, setvoteOpen] = useState(false);
   const auth = useSelector((state) => state.auth);
-  const { toogle } = useContext(TgState);
+  const [zsize, setzsize] = useState("");
+  const { toogle, size } = useContext(TgState);
   const [Toogle, setToogle] = toogle;
+  const [Size, setSize] = size;
   const onSendFeedback = () => {
     setToogle(true);
   };
@@ -98,6 +95,10 @@ function ProductInfo(props) {
     dispatch(hitLoveProduct(rows.id, !isSaved));
     //window.location.reload();
   };
+  const handleSizeChange = (e) => {
+    setzsize(e.target.value);
+    setSize(e.target.value);
+  };
   const RenderDescription = () => {
     const classes = useStyles();
     return (
@@ -128,9 +129,33 @@ function ProductInfo(props) {
         </Grid>
         <Divider variant="middle" />
         <Grid item>
-          <Typography variant="body1" gutterBottom>
-            dimentions\size : {rows.dimentions}
-          </Typography>
+          <FormControl
+            // variant="outlined"
+            className={classes.chip}
+            //className={classes.formControl}
+            fullWidth
+          >
+            <InputLabel htmlFor="outlined-age-native-simple">
+              Size/dimention
+            </InputLabel>
+            <Select
+              native
+              value={zsize}
+              fullWidth
+              id="size"
+              onChange={handleSizeChange}
+              label="Size"
+            >
+              {props.Product &&
+                props.Product.product &&
+                props.Product.product.dimentions &&
+                props.Product.product.dimentions.map((cat, index) => (
+                  <>
+                    <option value={cat}>{cat}</option>
+                  </>
+                ))}
+            </Select>
+          </FormControl>
         </Grid>
         <Divider variant="middle" />
         {/* {props.Product.product.stock - props.Product.product.sold <= 0 ? (

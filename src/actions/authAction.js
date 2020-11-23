@@ -67,10 +67,12 @@ export const login = (newuser) => async (dispatch) => {
       });*/
 };
 
-export const addToCart = (productId, command = null) => async (dispatch) => {
+export const addToCart = (productId, size = null, command = null) => async (
+  dispatch
+) => {
   await axios
     .get(
-      `/api/user/addToCart?productId=${productId}&command=${command}`,
+      `/api/user/addToCart?productId=${productId}&command=${command}&size=${size}`,
       tokenConfig()
     )
     .then((res) => {
@@ -92,6 +94,7 @@ export const getCartItems = (cartItems, userCart) => async (dispatch) => {
         response.data.forEach((productDetail, i) => {
           if (cartItem.id === productDetail._id) {
             response.data[i].quantity = cartItem.quantity;
+            response.data[i].size = cartItem.size;
           }
         });
       });
@@ -110,6 +113,7 @@ export const removeFromCart = (id) => async (dispatch) => {
         res.data.cartDetail.forEach((k, i) => {
           if (item.id === k._id) {
             res.data.cartDetail[i].quantity = item.quantity;
+            res.data.cartDetail[i].size = item.size;
           }
         });
       });

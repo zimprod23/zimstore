@@ -7,12 +7,14 @@ export const ToogleProvider = (props) => {
   const [Toogle, setToogle] = useState(false);
   const [BuyerData, setBuyerData] = useState(data);
   const [AlertToogle, setAlertToogle] = useState(false);
+  const [Size, setSize] = useState("");
   return (
     <TgState.Provider
       value={{
         toogle: [Toogle, setToogle],
         buyer: [BuyerData, setBuyerData],
         alerttoogle: [AlertToogle, setAlertToogle],
+        size: [Size, setSize],
       }}
     >
       {props.children}

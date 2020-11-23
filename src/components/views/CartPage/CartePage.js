@@ -114,7 +114,7 @@ function CartePage(props) {
     console.log(id);
   };
   const decrementQ = (productId) => {
-    dispatch(addToCart(productId, "minus"))
+    dispatch(addToCart(productId, null, "minus"))
       .then((res) => console.log("We havin good time outta here"))
       .catch((err) => window.location.replace("/signin"));
   };

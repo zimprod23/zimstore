@@ -44,13 +44,13 @@ export default function UploadProduct() {
   const dispatch = useDispatch();
 
   const reductionLevel = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90];
-
+  let cp = 0;
   const [category, setcategory] = useState(categories[0].name);
   const [description, setdescription] = useState("");
   const [name, setname] = useState("");
   //const [price, setprice] = useState("");
   const [reduction, setreduction] = useState("");
-  const [dimention, setdimention] = useState("");
+  const [dimention, setdimention] = useState([]);
   const [descOverview, setdescOverview] = useState("");
   const [originalPrice, setoriginalPrice] = useState("");
   const [strictPrice, setstrictPrice] = useState("");
@@ -58,6 +58,8 @@ export default function UploadProduct() {
   const [brand, setbrand] = useState("");
   const [link, setlink] = useState("");
   const [productKeyWords, setproductKeyWords] = useState([]);
+  const [SizeType, setSizeType] = useState([{ key: "none", index: cp++ }]);
+  const [temporareValue, settemporareValue] = useState("");
   const handleDescriptionChange = (event) => {
     const desc = event.target.value;
     setdescription(desc);
@@ -104,7 +106,9 @@ export default function UploadProduct() {
   let dataToSubmit = {
     name: name,
     //price: price,
-    dimentions: dimention,
+    dimentions: dimention.map((item, index) => {
+      return item.key;
+    }),
     description: description,
     categorie: category,
     descOverview: descOverview,
@@ -129,7 +133,15 @@ export default function UploadProduct() {
       alert("Please add images");
     }
   };
-
+  const handlepush = (e) => {
+    let keyCode = window.event.keyCode;
+    if (keyCode == 32) {
+      console.log(temporareValue);
+      setSizeType([...SizeType, { key: temporareValue, index: cp++ }]);
+      console.log(SizeType);
+      settemporareValue("");
+    }
+  };
   return (
     <Container component="main" maxWidth="lg">
       <CssBaseline />
@@ -186,7 +198,32 @@ export default function UploadProduct() {
                 id="stock"
               />
 
-              <TextField
+              <Autocomplete
+                multiple
+                id="tags-outlined15"
+                options={SizeType}
+                getOptionLabel={(option) => option.key}
+                filterSelectedOptions
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    variant="outlined"
+                    label="select keywords"
+                    placeholder="sizes"
+                  />
+                )}
+                inputValue={temporareValue}
+                onInputChange={(event, newValue) => {
+                  settemporareValue(newValue);
+                }}
+                value={dimention}
+                onChange={(event, newValue) => {
+                  setdimention(newValue);
+                }}
+                onKeyPress={handlepush}
+              />
+
+              {/* <TextField
                 variant="outlined"
                 margin="normal"
                 value={dimention}
@@ -196,7 +233,7 @@ export default function UploadProduct() {
                 name="dimention"
                 label="dimention"
                 id="dimention"
-              />
+              /> */}
               <FormControl
                 variant="outlined"
                 className={classes.formControl}

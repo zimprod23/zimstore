@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import {
   makeStyles,
   Grid,
@@ -16,6 +16,7 @@ import LoadingFullScreen from "../../utils/LoadingFullScreen";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../../actions/authAction";
 import RenderError from "../../utils/RenderError";
+import { TgState } from "../CartPage/ToogleState";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -87,6 +88,8 @@ function ProductDetails(props) {
   const user = props.user;
   const [Product, setProduct] = useState();
   const productId = props.match.params.productId;
+  const { size } = useContext(TgState);
+  const [Size, setSize] = size;
   const dispatch = useDispatch();
   const [onError, setonError] = useState(null);
   const classes = useStyles();
@@ -94,7 +97,11 @@ function ProductDetails(props) {
   //Error renderer function
 
   const handleAddToCard = () => {
-    dispatch(addToCart(productId))
+    let alternative = "";
+    if (Size == "") {
+      alternative = Product && Product.product && Product.product.dimentions[0];
+    }
+    dispatch(addToCart(productId, Size))
       .then((res) => console.log("We havin good time outta here"))
       .catch((err) => window.location.replace("/signin"));
   };
