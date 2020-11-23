@@ -208,7 +208,7 @@ export default function UploadProduct() {
                   <TextField
                     {...params}
                     variant="outlined"
-                    label="select keywords"
+                    label="select sizes"
                     placeholder="sizes"
                   />
                 )}

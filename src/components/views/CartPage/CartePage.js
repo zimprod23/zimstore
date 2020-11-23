@@ -99,10 +99,13 @@ function CartePage(props) {
   const calculateTotal = (cartDetail) => {
     let total = 0;
 
+    // cartDetail.map((item) => {
+    //   total += parseInt(item.price, 10) * item.quantity;
+    // });
     cartDetail.map((item) => {
-      total += parseInt(item.price, 10) * item.quantity;
+      total += parseFloat(item.price) * item.quantity;
     });
-
+    total = total.toFixed(2);
     setTotal(total);
     setShowTotal(true);
   };

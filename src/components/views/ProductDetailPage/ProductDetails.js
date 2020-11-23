@@ -97,11 +97,11 @@ function ProductDetails(props) {
   //Error renderer function
 
   const handleAddToCard = () => {
-    let alternative = "";
-    if (Size == "") {
-      alternative = Product && Product.product && Product.product.dimentions[0];
-    }
-    dispatch(addToCart(productId, Size))
+    let alternative =
+      Size == ""
+        ? Product && Product.product && Product.product.dimentions[0]
+        : Size;
+    dispatch(addToCart(productId, alternative))
       .then((res) => console.log("We havin good time outta here"))
       .catch((err) => window.location.replace("/signin"));
   };

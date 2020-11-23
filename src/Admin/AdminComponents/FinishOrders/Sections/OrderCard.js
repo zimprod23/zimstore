@@ -51,6 +51,14 @@ function ProductCards(props) {
                 component="p"
                 className={classes.desc}
               >
+                Size : {props.product.size ? props.product.size : "none"}
+              </Typography>
+              <Typography
+                variant="body2"
+                color="textSecondary"
+                component="p"
+                className={classes.desc}
+              >
                 Quantity : {props.product.quantity}
               </Typography>
               <Typography
