@@ -105,7 +105,7 @@ function ProductInfo(props) {
       <Grid Container spacing={2}>
         <Grid item>
           <Typography
-            variant="h5"
+            variant="h6"
             align="center"
             color="textSecondary"
             paragraph
