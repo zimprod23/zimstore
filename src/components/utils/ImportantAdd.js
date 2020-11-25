@@ -163,7 +163,7 @@ export default function NestedList() {
           <ListItemIcon>
             <Stars />
           </ListItemIcon>
-          <ListItemText primary="Apple products" />
+          <ListItemText primary="Beauty" />
         </ListItem>
         <ListItem
           button
